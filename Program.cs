@@ -27,6 +27,6 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
-app.MapHub<UserHub>("/hubs/user");
+app.MapHub<UserHub>("/hubs/userCount");
 
 app.Run();
