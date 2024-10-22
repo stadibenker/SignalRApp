@@ -3,7 +3,12 @@ var connectionUserCount = new signalR.HubConnectionBuilder().withUrl("/hubs/user
 
 // listen and process events
 connectionUserCount.on("updateTotalViews", (value) => {
-	var connectedUsersCountSpan = document.getElementById("totalViewsCounter");
+	var connectedViewsCountSpan = document.getElementById("totalViewsCounter");
+	connectedViewsCountSpan.innerText = value.toString();
+});
+
+connectionUserCount.on("updateTotalUsers", (value) => {
+	var connectedUsersCountSpan = document.getElementById("totalUsersCounter");
 	connectedUsersCountSpan.innerText = value.toString();
 });
 
