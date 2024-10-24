@@ -1,16 +1,19 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
+using SignalRApp.Hubs;
 using SignalRApp.Models;
 
 namespace SignalRApp.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private IHubContext<DeathlyHallowsHub> _hubContext;
 
-        public HomeController(ILogger<HomeController> logger)
+
+		public HomeController(ILogger<HomeController> logger, IHubContext<DeathlyHallowsHub> hubContext)
         {
-            _logger = logger;
+			_hubContext = hubContext;
         }
 
         public IActionResult Index()
@@ -27,6 +30,21 @@ namespace SignalRApp.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        public async Task<IActionResult> DeathlyHallows(string type)
+        {
+            if (StaticDetails.DeathlyHallowRace.ContainsKey(type)) {
+                StaticDetails.DeathlyHallowRace[type]++;
+            }
+
+            await _hubContext.Clients.All.SendAsync("updateDeathlyHallows",
+                StaticDetails.DeathlyHallowRace[StaticDetails.Cloak],
+                StaticDetails.DeathlyHallowRace[StaticDetails.Stone],
+                StaticDetails.DeathlyHallowRace[StaticDetails.Wand]
+            );
+
+            return Accepted();
         }
     }
 }

@@ -1,4 +1,25 @@
 ﻿<div class="container">
+    <div class="row border p-1">
+        <h3>Deathly Hallow Race </h3>
+        <div class="col-4">
+            <div>Invisibility Cloak - <span id="cloakCounter"></span></div>
+
+        </div>
+        <div class="col-4">
+            <div>Resurrection Stone - <span id="stoneCounter"></span></div>
+
+        </div>
+        <div class="col-4">
+            <div>Elder Wand - <span id="wandCounter"></span></div>
+
+        </div>
+        <hr />
+        <p>Url to Vote:</p>
+        <div>1. Invisibility Cloak - <a href="/Home/DeathlyHallows?type=cloak" target="_blank">vote cloak</a></div>
+        <div>2. Resurrection Stone - <a href="/Home/DeathlyHallows?type=stone" target="_blank">vote stone</a></div>
+        <div>3. Elder Wand - <a href="/Home/DeathlyHallows?type=wand" target="_blank">vote wand</a></div>
+    </div>
+
     <div class="row">
         <div class="col-3">Total views:</div>
         <div class="col-4">
@@ -15,3 +36,4 @@
 
 <script src="~/lib/microsoft/signalr/dist/browser/signalr.js"></script>
 <script src="~/js/usersCountService.js"></script>
+<script src="~/js/deathlyHallowsService.js"></script>
