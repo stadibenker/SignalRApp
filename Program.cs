@@ -29,5 +29,6 @@ app.MapControllerRoute(
 
 app.MapHub<UserHub>("/hubs/userCount");
 app.MapHub<DeathlyHallowsHub>("/hubs/deathlyHallows");
+app.MapHub<HouseGroupHub>("/hubs/houseGroup");
 
 app.Run();
